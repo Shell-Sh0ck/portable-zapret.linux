@@ -45,7 +45,7 @@ setup_nftables() {
 		oif_clause="oifname \"$interface\""
 	fi
 
-	if [ -n "$3" && -n "$3" ]; then
+	if [ -n "$3" ]; then
 		sudo nft add rule $table_name $chain_name $oif_clause meta mark != 0x40000000 tcp dport {$3} counter queue num $queue_num bypass comment \"$rule_comment\"
 		sudo nft add rule $table_name $chain_name $oif_clause meta mark != 0x40000000 udp dport {$3} counter queue num $queue_num bypass comment \"$rule_comment\"
 	fi
